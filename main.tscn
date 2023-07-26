@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://dqixxlprw7pfr"]
+
+[ext_resource type="PackedScene" uid="uid://cavl3d1lvgemo" path="res://asteroid.tscn" id="1_qqwta"]
+[ext_resource type="PackedScene" uid="uid://bcks1bt0aajoa" path="res://ship.tscn" id="2_gwxfe"]
+
+[sub_resource type="Environment" id="Environment_05crl"]
+ambient_light_source = 3
+ambient_light_color = Color(0.878431, 0.878431, 0.878431, 1)
+
+[node name="Main" type="Node"]
+
+[node name="Asteroid" parent="." instance=ExtResource("1_qqwta")]
+transform = Transform3D(0.261298, -0.946085, -0.191431, 0.76319, 0.323917, -0.559123, 0.590986, 0, 0.806682, 0.151743, 1.69024, -0.00818062)
+
+[node name="Ship" parent="." instance=ExtResource("2_gwxfe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00229931, 1.74975, 40.557)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_05crl")

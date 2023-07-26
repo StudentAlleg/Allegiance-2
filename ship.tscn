@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://bcks1bt0aajoa"]
+
+[ext_resource type="Script" path="res://ship.gd" id="1_t6ysx"]
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_030f2"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_ykqkt"]
+material = SubResource("ORMMaterial3D_030f2")
+radius = 2.5
+height = 5.0
+radial_segments = 16
+rings = 16
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_6rte4"]
+radius = 2.5
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_k3q7i"]
+
+[node name="Ship" type="RigidBody3D"]
+gravity_scale = 0.0
+script = ExtResource("1_t6ysx")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_ykqkt")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_6rte4")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+attributes = SubResource("CameraAttributesPractical_k3q7i")
+current = true
