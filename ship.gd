@@ -3,6 +3,8 @@ extends RigidBody3D
 
 var max_angular_velocity = 0.5
 
+var mouse_vector = Vector2.ZERO
+
 var vRotation = Vector3.ZERO
 var vThrust = Vector3.ZERO
 
@@ -45,11 +47,15 @@ func update_thrust():
 	
 	return new_thrust
 
-func update_rotation(mouse_vector):
+func update_rotation(vector2):
 	var vR = vRotation
 	
-	vR.x += mouse_vector.x/64
-	vR.y += mouse_vector.y/64
+	#replace with if we are using the mouse
+	if true:
+		vector2 = mouse_to_joy(vR, vector2)
+	
+	vR.x = vector2.x
+	vR.y = vector2.y
 	
 	var zRoll = 0
 	if Input.is_action_pressed("roll_left"):
@@ -59,7 +65,20 @@ func update_rotation(mouse_vector):
 		zRoll += 1
 	
 	vR.z = zRoll
-	return vR.normalized()	
+	
+
+	return vR
+	
+func mouse_to_joy(joy_current, vector):
+	var new_vector = Vector2.ZERO
+	
+	new_vector.x = joy_current.x - vector.x * 0.5
+	new_vector.y = joy_current.y - vector.y * 0.5
+
+	if new_vector.length() > 1:
+		new_vector = new_vector.normalized()
+	
+	return new_vector
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -68,10 +87,13 @@ func _process(delta):
 	
 func _integrate_forces (state):
 	#TODO make a force matrix based off of keys held down
+	
+	
+	
 	vThrust = update_thrust()
 	
 	#update the roll rotation
-	vRotation = update_rotation(Vector2.ZERO)
+	vRotation = update_rotation(mouse_vector)
 	
 	state.apply_force(vThrust)
 	state.apply_torque(vRotation)
@@ -84,5 +106,5 @@ func _integrate_forces (state):
 func _input(event): 
 	#handle mouse movement when flying ship
 	if event is InputEventMouseMotion:
-		vRotation = update_rotation(event.relative)
+		mouse_vector = event.relative
 
