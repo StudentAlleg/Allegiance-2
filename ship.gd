@@ -4,6 +4,7 @@ extends RigidBody3D
 var max_angular_velocity = 0.5
 
 @export var mouse_vector = Vector2.ZERO
+var mouse_enabled = true
 
 @export var vRotation = Vector3.ZERO
 
@@ -34,9 +35,6 @@ func update_thrust():
 	if Input.is_action_pressed("thrust_up"):
 		new_thrust.y += 1 * thrust_modifier
 		
-	if Input.is_action_pressed("thrust_up"):
-		new_thrust.y += 1 * thrust_modifier
-		
 	if Input.is_action_pressed("thrust_down"):
 		new_thrust.y += -1 * thrust_modifier
 		
@@ -44,7 +42,7 @@ func update_thrust():
 		new_thrust.z += 1 * thrust_modifier
 		
 	if Input.is_action_pressed("thrust_backward"):
-		new_thrust.y += -1 * thrust_modifier
+		new_thrust.z += -1 * thrust_modifier
 	
 	if new_thrust != Vector3.ZERO:
 		new_thrust = new_thrust.normalized()
@@ -75,21 +73,42 @@ func update_rotation(vector2):
 	
 	
 func update_mouse_vector(vector: Vector2):
-	self.mouse_vector += vector
+	#we only want to update if the mouse is enabled
+	if(self.mouse_enabled):
+		self.mouse_vector += vector
 	
+func update_mouse_enabled():
+	self.mouse_enabled = !self.mouse_enabled
+	print(self.mouse_enabled)
+	#if the mouse is disabled, reset the angular_accel from the mouse
+	
+	#This might need a recent flag
+	
+	if (!self.mouse_enabled):
+		self.vRotation.x = 0
+		self.vRotation.y = 0
+		#we still care about the z though
+		
+		#in case this has not been consumed yet
+		
+	
+
+
+
 func mouse_to_joy(joy_current):
 	##take the current mouse_vector
 	##and convert it to a joystick
 	var new_vector = Vector2.ZERO
 	
-	new_vector.x = joy_current.y - self.mouse_vector.x * 0.001
-	new_vector.y = joy_current.x - self.mouse_vector.y * 0.001
+	if self.mouse_enabled:
+		new_vector.x = joy_current.y - self.mouse_vector.x * 0.001
+		new_vector.y = joy_current.x - self.mouse_vector.y * 0.001
 
-	if new_vector.length() > 1:
-		new_vector = new_vector.normalized()
-	
-	#reset the mouse
-	self.mouse_vector = Vector2.ZERO
+		if new_vector.length() > 1:
+			new_vector = new_vector.normalized()
+		
+		#reset the mouse
+		self.mouse_vector = Vector2.ZERO
 	
 	return new_vector
 

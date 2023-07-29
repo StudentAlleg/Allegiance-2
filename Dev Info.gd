@@ -1,6 +1,6 @@
 extends Label
 
-func update_text(mouse: Vector2, aRotation: Vector3, angular_vel: Vector3, thrust:Vector3):
+func update_text(mouse: Vector2, aRotation: Vector3, angular_vel: Vector3, thrust: Vector3, linear_vel: Vector3):
 	##updates the information displayed
 	var format_string = """Dev Info
 	Mouse:
@@ -18,12 +18,17 @@ func update_text(mouse: Vector2, aRotation: Vector3, angular_vel: Vector3, thrus
 		X: %f
 		Y: %f
 		Z: %f
+	Velocity:
+		X: %f
+		Y: %f
+		Z: %f
 	"""
 	
 	var new_text = format_string % [mouse.x, mouse.y, 
 		aRotation.x, aRotation.y, aRotation.z, 
 		angular_vel.x, angular_vel.y, angular_vel.z,
-		thrust.x, thrust.y, thrust.z,]
+		thrust.x, thrust.y, thrust.z,
+		linear_vel.x, linear_vel.y, linear_vel.z]
 	self.set_text(new_text)
 	
 	pass

@@ -17,7 +17,10 @@ radius = 2.5
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_k3q7i"]
 
 [node name="Ship" type="RigidBody3D"]
+mass = 10.0
 gravity_scale = 0.0
+linear_damp = 0.01
+angular_damp = 0.1
 script = ExtResource("1_t6ysx")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
