@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://dqixxlprw7pfr"]
+[gd_scene load_steps=6 format=3 uid="uid://dqixxlprw7pfr"]
 
+[ext_resource type="Script" path="res://main.gd" id="1_ag3on"]
 [ext_resource type="PackedScene" uid="uid://cavl3d1lvgemo" path="res://asteroid.tscn" id="1_qqwta"]
 [ext_resource type="PackedScene" uid="uid://bcks1bt0aajoa" path="res://ship.tscn" id="2_gwxfe"]
 [ext_resource type="Script" path="res://Dev Info.gd" id="3_o5wi4"]
@@ -9,6 +10,7 @@ ambient_light_source = 3
 ambient_light_color = Color(0.878431, 0.878431, 0.878431, 1)
 
 [node name="Main" type="Node"]
+script = ExtResource("1_ag3on")
 
 [node name="Asteroid" parent="." instance=ExtResource("1_qqwta")]
 transform = Transform3D(0.261298, -0.946085, -0.191431, 0.76319, 0.323917, -0.559123, 0.590986, 0, 0.806682, 0.151743, 1.69024, -0.00818062)
@@ -28,9 +30,7 @@ anchors_preset = 0
 
 [node name="Dev Info" type="Label" parent="UI"]
 layout_mode = 0
-offset_left = -786.0
-offset_top = -495.0
-offset_right = -597.0
-offset_bottom = -449.0
+offset_right = 187.0
+offset_bottom = 51.0
 text = "Temp Dev Info"
 script = ExtResource("3_o5wi4")

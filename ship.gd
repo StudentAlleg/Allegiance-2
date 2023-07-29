@@ -9,12 +9,15 @@ var max_angular_velocity = 0.5
 
 @export var vThrust = Vector3.ZERO
 
+@export var thrustDirection = Vector3.ZERO
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	pass # Replace with function body.
 
 func update_thrust():
+	##poll through keys, and apply thrust like so
 	#TODO: this might be a slider to affect slide thrusting
 	var thrust_modifier = 1
 	
@@ -49,14 +52,14 @@ func update_thrust():
 	return new_thrust
 
 func update_rotation(vector2):
-	var vR = vRotation
+	var vR = self.vRotation
 	
 	#replace with if we are using the mouse
 	if true:
-		vector2 = mouse_to_joy(vR, vector2)
+		vector2 = mouse_to_joy(vR)
 	
-	vR.x = vector2.x
-	vR.y = vector2.y
+	vR.x = vector2.y
+	vR.y = vector2.x
 	
 	var zRoll = 0
 	if Input.is_action_pressed("roll_left"):
@@ -70,14 +73,23 @@ func update_rotation(vector2):
 
 	return vR
 	
-func mouse_to_joy(joy_current, vector):
+	
+func update_mouse_vector(vector: Vector2):
+	self.mouse_vector += vector
+	
+func mouse_to_joy(joy_current):
+	##take the current mouse_vector
+	##and convert it to a joystick
 	var new_vector = Vector2.ZERO
 	
-	new_vector.x = joy_current.x - vector.x * 0.5
-	new_vector.y = joy_current.y - vector.y * 0.5
+	new_vector.x = joy_current.y - self.mouse_vector.x * 0.001
+	new_vector.y = joy_current.x - self.mouse_vector.y * 0.001
 
 	if new_vector.length() > 1:
 		new_vector = new_vector.normalized()
+	
+	#reset the mouse
+	self.mouse_vector = Vector2.ZERO
 	
 	return new_vector
 
@@ -89,12 +101,10 @@ func _process(delta):
 func _integrate_forces (state):
 	#TODO make a force matrix based off of keys held down
 	
-	
-	
 	vThrust = update_thrust()
 	
 	#update the roll rotation
-	vRotation = update_rotation(mouse_vector)
+	vRotation = update_rotation(self.mouse_vector)
 	
 	state.apply_force(vThrust)
 	state.apply_torque(vRotation)
@@ -104,8 +114,4 @@ func _integrate_forces (state):
 	if (state.get_angular_velocity().length() > max_angular_velocity):
 		state.set_angular_velocity(state.get_angular_velocity().normalized())
 	
-func _input(event): 
-	#handle mouse movement when flying ship
-	if event is InputEventMouseMotion:
-		mouse_vector = event.relative
 
