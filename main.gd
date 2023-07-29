@@ -1,8 +1,8 @@
 class_name Main
 extends Node
 
-@onready var ship = get_node("Ship")
-@onready var dev_info = get_node("UI/Dev Info")
+@onready var ship = get_node("Mission/Sector/Ship")
+@onready var dev_info = get_node("Mission/Sector/UI/Dev Info")
 var mouse_disabled = false
 # Called when the node enters the scene tree for the first time.
 
