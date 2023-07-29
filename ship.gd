@@ -3,10 +3,11 @@ extends RigidBody3D
 
 var max_angular_velocity = 0.5
 
-var mouse_vector = Vector2.ZERO
+@export var mouse_vector = Vector2.ZERO
 
-var vRotation = Vector3.ZERO
-var vThrust = Vector3.ZERO
+@export var vRotation = Vector3.ZERO
+
+@export var vThrust = Vector3.ZERO
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
