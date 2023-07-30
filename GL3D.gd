@@ -1,6 +1,6 @@
-class_name Model extends ImporterMeshInstance3D
-const temp = 1
-	#this class holds stuff relative to their model
+class_name GL3D extends Node3D
+
+@onready var model:Model = self.find_child("Model", false, false)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://b4rf3p3scenc3"]
+
+[ext_resource type="Script" path="res://GLF.gd" id="1_ipuih"]
+[ext_resource type="Script" path="res://GL3D.gd" id="2_0mf6o"]
+[ext_resource type="Script" path="res://Model.gd" id="3_nvwwi"]
+
+[node name="Game Logic" type="Node"]
+
+[node name="GLF" type="Node" parent="."]
+script = ExtResource("1_ipuih")
+
+[node name="GL3D" type="Node3D" parent="GLF"]
+script = ExtResource("2_0mf6o")
+
+[node name="Model" type="ImporterMeshInstance3D" parent="GLF/GL3D"]
+script = ExtResource("3_nvwwi")
