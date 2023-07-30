@@ -1,8 +1,7 @@
-class_name GLF extends Node
-#This is the base file that most Game Logic Objects will inherit
-#This is based off of igc.h from github.com/freeallegiance/allegiance/src/igc
-
-
+class_name Model 
+extends GLF 
+	
+	#this class holds stuff relative to their model
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://dqixxlprw7pfr"]
+[gd_scene load_steps=9 format=3 uid="uid://dqixxlprw7pfr"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_ag3on"]
 [ext_resource type="PackedScene" uid="uid://cavl3d1lvgemo" path="res://asteroid.tscn" id="1_qqwta"]
 [ext_resource type="PackedScene" uid="uid://bcks1bt0aajoa" path="res://ship.tscn" id="2_gwxfe"]
 [ext_resource type="Script" path="res://Dev Info.gd" id="3_o5wi4"]
 [ext_resource type="Script" path="res://GLF.gd" id="5_hx0u8"]
+[ext_resource type="Script" path="res://Model.gd" id="6_2as1k"]
 
 [sub_resource type="Sky" id="Sky_c0jom"]
 
@@ -50,3 +51,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 80.4848, 0)
 
 [node name="GLF" type="Node" parent="Mission/Sector/Game Logic"]
 script = ExtResource("5_hx0u8")
+
+[node name="Model" type="Node" parent="Mission/Sector/Game Logic/GLF"]
+script = ExtResource("6_2as1k")
