@@ -1,4 +1,4 @@
-class_name Ship
+#class_name Ship
 extends RigidBody3D
 
 var max_angular_velocity = 0.5

@@ -15,4 +15,39 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if (self.ship != null):
+		#we have a ship
+		#do things if we have a ship
+		
+		#if the ship is not docked, we need to pass controls
+		if(!self.ship.is_docked()):
+			#first, update the thrust vector
+			#this tells the ship what thrusters are firing
+			var thrust_vector: Vector3 = Vector3.ZERO
+			if Input.is_action_pressed("thrust_right"):
+				thrust_vector.x += 1
+	
+			if Input.is_action_pressed("thrust_left"):
+				thrust_vector.x += -1
+			
+			if Input.is_action_pressed("thrust_up"):
+				thrust_vector.y += 1
+				
+			if Input.is_action_pressed("thrust_down"):
+				thrust_vector.y += -1
+				
+			if Input.is_action_pressed("thrust_forward"):
+				thrust_vector.z += 1
+				
+			if Input.is_action_pressed("thrust_backward"):
+				thrust_vector.z += -1
+			
+			self.ship.update_force(thrust_vector)
+			
+			#update the mouse/roll
+			
+			pass
+	
+	
+	
 	pass
