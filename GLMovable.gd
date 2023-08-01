@@ -1,6 +1,6 @@
+class_name GLMovable extends RigidBody3D
 ##Base class for all things that move in the base engine
 ##This is designed to have base methods for consumer classes
-class_name GLMovable extends RigidBody3D
 
 ##Contains the force to be applied when _integrate_forces is next called
 var force: Vector3 = Vector3.ZERO
@@ -8,7 +8,8 @@ var force: Vector3 = Vector3.ZERO
 ##Contains the force to be applied when _integrate_forces is next called
 var torque: Vector3 = Vector3.ZERO
 
-var max_thrust: Vector3 = Vector3.ONE
+var max_force: Vector3 = Vector3.ONE
+var max_torque: Vector3 = Vector3.ONE
 
 var max_turn_rate = 0
 var max_speed = 0
@@ -18,13 +19,21 @@ func update_force(thrust_vector: Vector3):
 	var new_force: Vector3 = Vector3.ZERO
 	
 	#TODO - probably some fancy vector thing to do this
-	new_force.x = thrust_vector.x * self.max_thrust.x
-	new_force.y = thrust_vector.y * self.max_thrust.y
-	new_force.z = thrust_vector.z * self.max_thrust.z
+	new_force.x = thrust_vector.x * self.max_force.x
+	new_force.y = thrust_vector.y * self.max_force.y
+	new_force.z = thrust_vector.z * self.max_force.z
 	
 	#TODO, we might not want to pass a normalized here.
 	self.set_force(new_force.normalized())
+
+func update_torque(control_vector: Vector3):
+	var new_torque: Vector3 = Vector3.ZERO
 	
+	new_torque.x = control_vector.x * self.max_torque.x
+	new_torque.y = control_vector.y * self.max_torque.y
+	new_torque.z = control_vector.z * self.max_torque.z
+	
+	self.set_torque(new_torque)
 
 
 

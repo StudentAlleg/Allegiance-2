@@ -8,6 +8,9 @@ var ship:GLShip = null
 #this defaults to SIDE_LOBBY
 var side:GLSide = GLSide.new()
 
+#this is temp, controls might be accessed differently in the future
+var controls:GLControls = GLControls.new()
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -23,28 +26,29 @@ func _process(delta):
 		if(!self.ship.is_docked()):
 			#first, update the thrust vector
 			#this tells the ship what thrusters are firing
-			var thrust_vector: Vector3 = Vector3.ZERO
-			if Input.is_action_pressed("thrust_right"):
-				thrust_vector.x += 1
-	
-			if Input.is_action_pressed("thrust_left"):
-				thrust_vector.x += -1
-			
-			if Input.is_action_pressed("thrust_up"):
-				thrust_vector.y += 1
-				
-			if Input.is_action_pressed("thrust_down"):
-				thrust_vector.y += -1
-				
-			if Input.is_action_pressed("thrust_forward"):
-				thrust_vector.z += 1
-				
-			if Input.is_action_pressed("thrust_backward"):
-				thrust_vector.z += -1
+			var thrust_vector: Vector3 = controls.get_thrust_vector()
 			
 			self.ship.update_force(thrust_vector)
 			
 			#update the mouse/roll
+			
+			var vR = self.vRotation
+	
+		#replace with if we are using the mouse
+			if true:
+				vector2 = mouse_to_joy(vR)
+			
+			vR.x = vector2.y
+			vR.y = vector2.x
+			
+			var zRoll = 0
+			if Input.is_action_pressed("roll_left"):
+				zRoll += -1
+				
+			if Input.is_action_pressed("roll_right"):
+				zRoll += 1
+			
+			vR.z = zRoll
 			
 			pass
 	
