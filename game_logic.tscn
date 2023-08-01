@@ -1,9 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://b4rf3p3scenc3"]
+[gd_scene load_steps=8 format=3 uid="uid://b4rf3p3scenc3"]
 
 [ext_resource type="Script" path="res://GLF.gd" id="1_ipuih"]
 [ext_resource type="Script" path="res://GL3D.gd" id="2_0mf6o"]
 [ext_resource type="Script" path="res://Model.gd" id="3_nvwwi"]
 [ext_resource type="Script" path="res://GLMovable.gd" id="4_rcjoq"]
+[ext_resource type="Script" path="res://GLType.gd" id="5_b41l7"]
+[ext_resource type="Script" path="res://GLModule.gd" id="6_agxmd"]
 
 [sub_resource type="ImporterMesh" id="ImporterMesh_ijis2"]
 
@@ -23,3 +25,11 @@ script = ExtResource("3_nvwwi")
 script = ExtResource("4_rcjoq")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="GLF/GL3D/GLMovable"]
+
+[node name="GLShip" type="Node3D" parent="GLF/GL3D/GLMovable"]
+
+[node name="GLType" type="Node" parent="GLF"]
+script = ExtResource("5_b41l7")
+
+[node name="GLModule" type="Node" parent="GLF/GLType"]
+script = ExtResource("6_agxmd")

@@ -8,9 +8,14 @@ var force: Vector3 = Vector3.ZERO
 ##Contains the force to be applied when _integrate_forces is next called
 var torque: Vector3 = Vector3.ZERO
 
+
+var max_turn_rate
 #these functions are to be used to get info about the object
 #and to affect things that will be called by _integrate_forces
 
+##have this movable thing take damage
+func receive_damage():
+	pass
 
 
 func update_force(new_force: Vector3):
