@@ -26,29 +26,18 @@ func _process(delta):
 		if(!self.ship.is_docked()):
 			#first, update the thrust vector
 			#this tells the ship what thrusters are firing
-			var thrust_vector: Vector3 = controls.get_thrust_vector()
+			var thrust_vector: Vector3 = controls.get_new_thrust_vector()
 			
 			self.ship.update_force(thrust_vector)
 			
+			var rotation_vector: Vector3 = controls.get_new_rotation_vector(ship.get_torque())
+			
+			self.ship.update_torque(rotation_vector)
+			
 			#update the mouse/roll
 			
-			var vR = self.vRotation
-	
+
 		#replace with if we are using the mouse
-			if true:
-				vector2 = mouse_to_joy(vR)
-			
-			vR.x = vector2.y
-			vR.y = vector2.x
-			
-			var zRoll = 0
-			if Input.is_action_pressed("roll_left"):
-				zRoll += -1
-				
-			if Input.is_action_pressed("roll_right"):
-				zRoll += 1
-			
-			vR.z = zRoll
 			
 			pass
 	

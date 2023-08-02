@@ -1,5 +1,10 @@
 class_name GLControls extends GLF
 var mouse_as_joy_vector: Vector2 = Vector2.ZERO
+
+
+var mouse_vector: Vector2 = Vector2.ZERO
+var mouse_enabled = true
+
 var player:GLPlayer = null
 
 func new(player:GLPlayer):
@@ -8,7 +13,7 @@ func new(player:GLPlayer):
 
 
 
-func get_thrust_vector() -> Vector3:
+func get_new_thrust_vector() -> Vector3:
 	var thrust_vector: Vector3 = Vector3.ZERO
 	if Input.is_action_pressed("thrust_right"):
 		thrust_vector.x += 1
@@ -29,15 +34,23 @@ func get_thrust_vector() -> Vector3:
 		thrust_vector.z += -1
 	return thrust_vector
 
-func update_rotation(vector2):
-	var vR = self.vRotation
+func get_new_rotation_vector(current_vector: Vector3) -> Vector3:
+	var rotation_vector: Vector3 = Vector3.ZERO
+	#TODO: have this be an actual joystick
+	var joy_vector: Vector2 = Vector2.ZERO
+	if self.mouse_enabled:
+		joy_vector = Vector2.ZERO
+		joy_vector.x = current_vector.y - self.mouse_vector.x * 0.001
+		joy_vector.y = current_vector.x - self.mouse_vector.y * 0.001
+
+		if joy_vector.length() > 1:
+			joy_vector = joy_vector.normalized()
+		
+		#reset the mouse
+		self.mouse_vector = Vector2.ZERO
 	
-	#replace with if we are using the mouse
-	if true:
-		vector2 = mouse_to_joy(vR)
-	
-	vR.x = vector2.y
-	vR.y = vector2.x
+	rotation_vector.x = joy_vector.y
+	rotation_vector.y = joy_vector.x
 	
 	var zRoll = 0
 	if Input.is_action_pressed("roll_left"):
@@ -46,10 +59,11 @@ func update_rotation(vector2):
 	if Input.is_action_pressed("roll_right"):
 		zRoll += 1
 	
-	vR.z = zRoll
+	rotation_vector.z = zRoll
 	
+	return rotation_vector
+			
 
-	return vR
 	
 	
 func update_mouse_vector(vector: Vector2):
@@ -64,15 +78,13 @@ func update_mouse_enabled():
 	
 	#This might need a recent flag
 	
-	if (!self.mouse_enabled &&):
+	if (!self.mouse_enabled):
 		self.vRotation.x = 0
 		self.vRotation.y = 0
 		#we still care about the z though
 		
 		#in case this has not been consumed yet
-		
-	
-	return new_vector
+
 
 func update_mouse_to_joy_vector(current_vector: Vector3):
 	var new_vector = Vector2.ZERO
