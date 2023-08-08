@@ -1,4 +1,5 @@
 class_name GLMovable extends RigidBody3D
+
 ##Base class for all things that move in the base engine
 ##This is designed to have base methods for consumer classes
 
@@ -35,9 +36,6 @@ func update_torque(control_vector: Vector3):
 	
 	self.set_torque(new_torque)
 
-
-
-
 func set_torque(torque: Vector3):
 	self.torque = torque
 
@@ -58,13 +56,6 @@ func get_force():
 ##have this movable thing take damage
 func receive_damage():
 	pass
-
-
-
-func update_force(new_force: Vector3):
-	#update the force logic
-	pass
-
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
