@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://b4rf3p3scenc3"]
+[gd_scene load_steps=14 format=3 uid="uid://b4rf3p3scenc3"]
 
 [ext_resource type="Script" path="res://GLF.gd" id="1_ipuih"]
 [ext_resource type="Script" path="res://GL3D.gd" id="2_0mf6o"]
@@ -13,6 +13,8 @@
 [ext_resource type="Script" path="res://GLControls.gd" id="11_2xig3"]
 
 [sub_resource type="ImporterMesh" id="ImporterMesh_ijis2"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_yb8d0"]
 
 [node name="Game Logic" type="Node"]
 
@@ -30,9 +32,12 @@ script = ExtResource("3_nvwwi")
 script = ExtResource("4_rcjoq")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="GLF/GL3D/GLMovable"]
+shape = SubResource("SphereShape3D_yb8d0")
 
-[node name="GLShip" type="Node" parent="GLF/GL3D/GLMovable"]
+[node name="GLShip" type="Node3D" parent="GLF/GL3D/GLMovable"]
 script = ExtResource("5_21kbp")
+lead_indicator = null
+lead_indicator_share = null
 
 [node name="GLStation" type="Node" parent="GLF/GL3D"]
 script = ExtResource("6_ht3v5")

@@ -2,6 +2,9 @@ class_name GLF extends Node
 #This is the base file that most Game Logic Objects will inherit
 #This is based off of igc.h from github.com/freeallegiance/allegiance/src/igc
 
+func _init():
+	super()
+
 func update(now):
 	pass
 

@@ -7,7 +7,7 @@ var mouse_enabled = true
 
 var player:GLPlayer = null
 
-func new(player:GLPlayer):
+func _init(player:GLPlayer = null):
 	super()
 	self.player = player
 
@@ -85,21 +85,8 @@ func update_mouse_enabled():
 		
 		#in case this has not been consumed yet
 
-
-func update_mouse_to_joy_vector(current_vector: Vector3):
-	var new_vector = Vector2.ZERO
-	
-	if self.mouse_enabled:
-		new_vector.x = current_vector.y - self.mouse_vector.x * 0.001
-		new_vector.y = current_vector.x - self.mouse_vector.y * 0.001
-
-		if new_vector.length() > 1:
-			new_vector = new_vector.normalized()
-		
-		#reset the mouse
-		self.mouse_vector = Vector2.ZERO
-	
-	return new_vector
+func get_mouse_enabled():
+	return self.mouse_enabled
 	
 # Called when the node enters the scene tree for the first time.
 func _ready():

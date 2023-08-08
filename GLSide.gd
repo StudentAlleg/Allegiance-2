@@ -1,4 +1,4 @@
-class_name GLSide extends Node
+class_name GLSide extends GLF
 ##This class represents the side of a game
 
 #Constants
