@@ -36,8 +36,8 @@ shape = SubResource("SphereShape3D_yb8d0")
 
 [node name="GLShip" type="Node3D" parent="GLF/GL3D/GLMovable"]
 script = ExtResource("5_21kbp")
-lead_indicator = null
-lead_indicator_share = null
+
+[node name="Camera3D" type="Camera3D" parent="GLF/GL3D/GLMovable/GLShip"]
 
 [node name="GLStation" type="Node" parent="GLF/GL3D"]
 script = ExtResource("6_ht3v5")

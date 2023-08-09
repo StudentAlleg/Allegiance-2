@@ -9,7 +9,23 @@ var ship:GLShip = null
 var side:GLSide = GLSide.new()
 
 #this is temp, controls might be accessed differently in the future
-var controls:GLControls = GLControls.new()
+
+##A GLControls instance
+var controls:GLControls = GLControls.new(self)
+
+##Set the ship of a player.
+#This is probably going to be called when ejecting a player
+#and when a player selects a ship in base
+func set_ship(ship:GLShip) -> void:
+	#TODO: assign a ship to a player
+	#Probably 
+	self.ship = ship
+	
+func get_ship() -> GLShip:
+	return self.ship
+	
+func in_ship() -> bool:
+	return (self.ship != null)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -18,7 +34,10 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if (self.ship != null):
+	
+	
+	
+	if (self.in_ship()):
 		#we have a ship
 		#do things if we have a ship
 		
