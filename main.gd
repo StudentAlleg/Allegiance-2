@@ -3,7 +3,6 @@ extends Node
 
 @onready var player:GLPlayer = GLPlayer.new()
 @onready var dev_info = get_node("Mission/Sector/UI/Dev Info")
-var mouse_disabled = false
 # Called when the node enters the scene tree for the first time.
 
 

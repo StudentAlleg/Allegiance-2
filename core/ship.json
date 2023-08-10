@@ -1,0 +1,10 @@
+{
+    "UID" : 0,
+    "Inherits" : null, //This is the name of the ship it inherits from. Uses those values as default. Since this is the default ship, everything should inherit from here
+    "Faction" : 0, //0 is debug
+    "Name" : "Debug Ship",
+    "Description" : "This ship is the default ship of Allegiance. Should not be used except for testing",
+    "Model" : "res://debugfig.file",
+    "Icon" : "debugfig.png",
+    ""
+}
