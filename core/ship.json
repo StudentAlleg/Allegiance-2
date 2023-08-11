@@ -6,5 +6,14 @@
     "Description" : "This ship is the default ship of Allegiance. Should not be used except for testing",
     "Model" : "res://debugfig.file",
     "Icon" : "debugfig.png",
-    ""
+    "Health" : 1000,
+    "Mass" : 10,
+    "Max Speed" : 100,
+    "Max Thrust" : 1000, //idk what this will do
+    "Length" : 10,
+    "Sounds" : {/*TBD*/},
+    "Max Modules" : 4, //the maximum number of module slots are here //probably dont need this
+    "Modules" : {} //TBD what this will look like, probably an array of arrays, with "Max Modules" length, with references to ids of modules
+
+
 }
