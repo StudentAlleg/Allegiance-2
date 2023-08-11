@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://b4rf3p3scenc3"]
+[gd_scene load_steps=15 format=3 uid="uid://b4rf3p3scenc3"]
 
 [ext_resource type="Script" path="res://GLF.gd" id="1_ipuih"]
 [ext_resource type="Script" path="res://GL3D.gd" id="2_0mf6o"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://GLPlayer.gd" id="7_lcjxf"]
 [ext_resource type="Script" path="res://GLSide.gd" id="9_v2wt6"]
 [ext_resource type="Script" path="res://GLControls.gd" id="11_2xig3"]
+[ext_resource type="Script" path="res://GLJson.gd" id="12_7iviq"]
 
 [sub_resource type="ImporterMesh" id="ImporterMesh_ijis2"]
 
@@ -56,3 +57,6 @@ script = ExtResource("9_v2wt6")
 
 [node name="GLControls" type="Node" parent="GLF"]
 script = ExtResource("11_2xig3")
+
+[node name="GLJson" type="Node" parent="."]
+script = ExtResource("12_7iviq")
