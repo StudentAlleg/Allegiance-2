@@ -3,7 +3,7 @@ class_name GLF extends Node
 #This is based off of igc.h from github.com/freeallegiance/allegiance/src/igc
 
 func load_data():
-	
+	#load the data all GLF files use
 	pass
 
 
